@@ -1,14 +1,15 @@
 
 import './App.css';
 
-import Recorder from './components/Record_box/Record_box';
+import Streamer from './components/Stream_box/Streambox';
+// import RecordBox from './components/Record_box/Record_box';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Recorder />
+      <Streamer />
 
     </div>
   );

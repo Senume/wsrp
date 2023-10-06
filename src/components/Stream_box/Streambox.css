@@ -1,0 +1,93 @@
+* {
+    background-color: transparent;
+}
+
+.Stream_outerbox {
+    width: 100%;
+    height: 100%;
+    
+    background-color: pink;
+    border-radius:  10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+
+}
+
+.album_cover {
+    
+    margin-top: 5vh;
+
+    width: 40vh;
+    height: 40vh;
+
+
+    border: 5px solid white;
+    border-radius: 10px;
+
+
+    overflow: hidden;
+
+
+}
+
+img {
+    width: 40vh;
+    object-fit: cover;
+
+    background-color: transparent;
+
+}
+
+.song_detail .timestamp {
+    background-color: transparent;
+}
+
+#song_title {
+    margin-bottom: 0%;
+    font-family: "AR One Sans";
+    font-weight: 200;
+    font-size: 1.5rem;
+}
+
+#descrip {
+    margin-top: 0%;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+}
+
+.controls {
+
+    width: 40vh;
+    height: 10vh;
+
+    margin-bottom: 5vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ppbutton {
+    width: 7vh;
+    height: 7vh;
+
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+#ppbutton:active {
+    border: 0.5px solid rgb(222, 200, 203);
+    box-shadow: none;
+}
+
+.slider {
+    width: 75%;
+    /* color: -internal-light-dark(rgb(242, 122, 122), rgb(241, 203, 239)) !important; */
+}
+
