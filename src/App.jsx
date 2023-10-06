@@ -1,16 +1,13 @@
 
 import './App.css';
-
-import Streamer from './components/Stream_box/Streambox';
-// import RecordBox from './components/Record_box/Record_box';
+import GridLayout from './components/Grid/grid';
 
 
 
 function App() {
   return (
     <div className="App">
-      <Streamer />
-
+      <GridLayout />
     </div>
   );
 }
