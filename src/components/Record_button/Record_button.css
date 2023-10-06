@@ -1,0 +1,30 @@
+.outer_circle {
+
+    width: 50%;
+    height: 50%;
+
+    background-color: aliceblue;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.1)
+
+}
+
+.outer_circle:active {
+
+    box-shadow: inset 10px 10px 10px rgba(0,0,0,0.1),
+    inset -10px -10px 10px rgba(255,255,255,0.6);
+}
+
+#symbol {
+    
+    height: 25%;
+    width: 25%;
+    
+    background-color: transparent;
+}
+

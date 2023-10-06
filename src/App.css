@@ -1,5 +1,17 @@
+* {
+  background-color: grey;
+}
+
 .App {
   text-align: center;
+
+  width: 50vh;
+  height: 50vh;
+  
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

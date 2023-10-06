@@ -1,0 +1,23 @@
+.recorderOuterBox {
+
+    width: 50vh;
+    height: 50vh;
+
+    background-color: #BCCEF8;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recordButton {
+    
+    width: 20vh;
+    height: 20vh;  
+    
+    border-radius: 50%;
+    border: 0px transparent;
+
+    
+}
