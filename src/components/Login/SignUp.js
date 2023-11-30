@@ -6,18 +6,24 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 const SignUpPage = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("male"); // Default to 'male'
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignUp = async () => {
     try {
       // Replace 'http://localhost:5000' with your actual backend API URL
       const response = await axios.post("http://localhost:5000/signup", {
+        name,
         email,
         password,
         confirmPassword,
+        age,
+        gender,
       });
 
       console.log("Signup successful:", response.data);
@@ -43,6 +49,18 @@ const SignUpPage = () => {
             <div className="card-body">
               <form>
                 <div className="mb-3">
+                  <label htmlFor="name" className="form-label text-start">
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
                   <label htmlFor="email" className="form-label text-start">
                     Email:
                   </label>
@@ -53,6 +71,51 @@ const SignUpPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="age" className="form-label text-start">
+                    Age:
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="age"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="gender" className="form-label text-start">
+                    Gender:
+                  </label>
+                  <div className="form-check">
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="male"
+                      checked={gender === "male"}
+                      onChange={() => setGender("male")}
+                      className="form-check-input"
+                    />
+                    <label htmlFor="male" className="form-check-label">
+                      Male
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="female"
+                      checked={gender === "female"}
+                      onChange={() => setGender("female")}
+                      className="form-check-input"
+                    />
+                    <label htmlFor="female" className="form-check-label">
+                      Female
+                    </label>
+                  </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label text-start">
