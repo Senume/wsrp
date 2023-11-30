@@ -43,7 +43,7 @@ const LoginPage = () => {
             <div className="card-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label ">
+                  <label htmlFor="email" className="form-label">
                     Email:
                   </label>
                   <input
@@ -89,10 +89,11 @@ const LoginPage = () => {
                     Remember Me
                   </label>
                 </div>
-                <div>
+                <div className="d-grid">
+                  {/* Use d-grid to make the button take full width */}
                   <button
                     type="button"
-                    className="btn btn-primary btn-block rounded-0 border-0"
+                    className="btn btn-primary rounded-0 border-0"
                     style={{ fontSize: "1.2em" }}
                     onClick={handleLogin}
                   >
