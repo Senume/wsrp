@@ -1,20 +1,30 @@
-import { Route, Routes } from "react-router";
-import "./App.css";
+import { Route, Router, Routes } from "react-router";
+
+
 import GridLayout from "./components/Grid/grid";
 import LoginPage from "./components/Login/Login";
-import { BrowserRouter } from "react-router-dom";
 import SignUpPage from "./components/Login/SignUp";
+import Navbar from "./components/Navbar/Navbar";
+
+import "./App.css";
+
 function App() {
   return (
-    <BrowserRouter>
-      <div className="container">
-        <Routes>
-          {/* <Route path="/audio" element={<GridLayout />} /> */}
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-        </Routes>
+
+      <div className="App">
+        <header>
+        <Navbar/>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<GridLayout />}/>
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/signup" element={<SignUpPage/>} />
+          </Routes>
+        </main>        
       </div>
-    </BrowserRouter>
+
+
   );
 }
 

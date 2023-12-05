@@ -13,7 +13,7 @@ function RecordButton() {
         try {
 
         // Getting stream channel opened from an mic device.
-        let stream = navigator.mediaDevices.getUserMedia({audio: true, video: false});
+        let stream = navigator.mediaDevices.getUserMedia({audio: {channelCount: 1}, video: false});
         console.log(stream);
         console.log("Creating Media Recording API Object");
 
@@ -23,7 +23,7 @@ function RecordButton() {
             console.log(MS);
             
             // The stream channel is passed into Recorder API which help in manupilating the binary data to our needs.
-            let MediaRec = new MediaRecorder(MS);
+            let MediaRec = new MediaRecorder(MS, {audioBitsPerSecond: 44100});
             
             // To store the stream data.
             const chunks = [];
@@ -38,28 +38,29 @@ function RecordButton() {
 
                 // All the binary chunks are encapsulated into blob object which specifies the encoding type.
                 const blob = new Blob(chunks, {
-                  type: "audio/mp3"
+                  type: "audio/webm"
                 });
-                
+                console.log(blob);
+
                 // Blob is in binary representation, it isnt in structed representation. Making it into File object to 
                 // provide a structured representation to transfer on net.
-                const FileContent = new File([blob], 'Recorded_samples.mp3', {
-                    type: "audio/mp3",
+                const FileContent = new File([blob], 'Recorded_samples.webm', {
+                    type: "audio/webm",
                 });
 
                 // Non-Tuple data structure are transfered as ForData, which reduced data loss on transfer.
                 const AudioForm = new FormData();
-                AudioForm.append('Audio', FileContent);
+                AudioForm.append('audio', FileContent, 'audio1.webm');
 
                 // Calling API with "post" method.
-                axios.post('http://localhost:3500/upload', AudioForm, {
+                axios.post('http://localhost:3500/recognisesong', AudioForm, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
                 })
                 .then((response) => {
                     // Handle success
-                    console.log('Response:', response.data);
+                    console.log('Response:', response.data.track);
                 })
                 .catch(
                     function (error) {
@@ -72,24 +73,19 @@ function RecordButton() {
                           console.log(error.response.headers);
                         } else if (error.request) {
                           // The request was made but no response was received
-                          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                          // error.request is an instance of XMLHttpRequest in the browser and an instance of
                           // http.ClientRequest in node.js
                           console.log("Error: 2");
-                          console.log(error.request);
+                          console.log(error.message);
                         } else {
                           // Something happened in setting up the request that triggered an Error
                           console.log("Error: 3");
                           console.log('Error', error.message);
                         }
-                        console.log(error.config);
+
                       }
 
                 );
-
-
-
-                
-
             };
 
             // We start the Recording
@@ -102,7 +98,7 @@ function RecordButton() {
                 MS.getTracks().forEach( track => track.stop() );
                 console.log("Stopped Recording");
             
-            }, 5000);
+            }, 4500);
             
 
     

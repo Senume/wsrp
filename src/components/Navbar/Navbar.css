@@ -1,0 +1,22 @@
+nav li {
+    list-style-type: none;
+}
+
+.bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.bar li{
+    padding: 10px;
+}
