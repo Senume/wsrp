@@ -3,7 +3,7 @@
     width: 100%;
     height: 100%;
 
-    background-color: #BCCEF8;
+    background-color: #ffffff;
     border-radius: 15px;
 
     display: flex;
@@ -13,9 +13,9 @@
 
 .recordButton {
     
-    width: 20vh;
-    height: 20vh;  
-    
+    width: 100px;
+    height:100px;
+
     border-radius: 50%;
     border: 0px transparent;
 

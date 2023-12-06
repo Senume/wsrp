@@ -1,4 +1,10 @@
+body {
+ 
+
+  margin: 10px;
+}
+
 .App {
-  width: 98vw;
-  height: 97.5vh;
+  width: 100%;
+  height: 100%;
 }

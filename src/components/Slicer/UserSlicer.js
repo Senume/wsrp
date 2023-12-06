@@ -6,7 +6,8 @@ const initialState = {
     Email: null,
     UserType: null,
     PlaylistList: [],
-    HistoryList: []
+    HistoryList: [],
+    CurrentSong: null
 };
 
 // Create a user slice with reducer functions
@@ -31,7 +32,9 @@ const UserSlicer = createSlice({
     },
     AddaHistory: (state, action) => {
         state.HistoryList = state.HistoryList.push(action.payload);
-    }}
+    },
+    UpdateDatabase: (state, action) => {}
+    },
 
 });
 

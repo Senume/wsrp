@@ -1,21 +1,21 @@
-import hashIt from "hash-it";               // Library to handle Hash functionalities
+import hashIt from "hash-it";            // Library to handle Hash functionalities
+import axios from "axios";
 
 /**
  * Class to store the Song details and use the object for further manipulation.
  * @construct 
  * @param {string} songTitle Title of the song
  * @param {string} songArtist Artist of the song
- * @param {string} songRelease Release of the song
- * @param {number} songDuration Duration of the song in seconds
+ * @param {string} uri Cover of the song
+ * @param {number} artistcover Artist cover
  */
 export default class Song {
 
-    constructor(songTitle, songArtist, songRelease, songDuration, uri){
+    constructor(songTitle = null, songArtist = null, uri = null, artistcover = null){
         this.SongTitle = songTitle;                                                                     // Song Details - Title
-        this.SongArtist = songArtist;                                                                   // Song Details - Artist        
-        this.SongRelease = songRelease;                                                                 // Song Details - Release
-        this.SongDuration = songDuration;  
-        this.CoverURL = uri                                                             // Song Details - Duration
+        this.SongArtist = songArtist;                                                                   // Song Details - Artist
+        this.CoverURL = uri;
+        this.ArtistURL = artistcover;                                                             
         this.ID = 0;                                                                                    // Unique ID will be generated based on the Song Details
     }
     
@@ -24,7 +24,7 @@ export default class Song {
      * @returns {number} Unique ID for the object created.
     */
     GenerateHashID() {
-        const TempID =  hashIt((this.SongTitle + this.SongArtist + this.SongDuration).toUpperCase());   // Hashing Song details based on the Song Details
+        const TempID =  hashIt((this.SongTitle + this.SongArtist).toUpperCase());                       // Hashing Song details based on the Song Details
         this.ID = TempID;                                                                               // Updating the Unique ID.
         return this.ID;                                                                                 // Logging purpose.
     }
@@ -34,14 +34,36 @@ export default class Song {
     */
     GetSongDetails() {
         const Details = {
-            id: this.ID,
-            title: this.songTitle,
-            artist: this.songArtist,
-            duration: this.SongDuration,
-            release: this.songRelease,
-            coverURL: this.CoverURL
+            ID: this.ID,
+            SongTitle: this.SongTitle,
+            SongArtist: this.SongArtist,
+            CoverURL: this.CoverURL,
+            ArtistURL: this.ArtistURL
         }
         return Details;
+    }
+
+    async UpdateDatabase() {
+        const Details = this.GetSongDetails()
+
+        var Response = await axios.post('http://localhost:3500/addsongdetails',Details,{
+            headers: {
+                "Content-Type": 'application/json',
+            }
+        });
+
+        if (Response.data.success) {
+            console.log("Data added successfully");
+        } else {
+            console.log("Data not added successfully");
+        }
+    }
+
+    async GetDetails(id) {
+        
+        let url = 'http://localhost:3500/songdetails/' + id
+        var Response = await axios.get(url);
+        return Response.data;
     }
 
 };

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./Record_button.css";
 
+import Song from '../../../utils/SongClass';
 
 function RecordButton() {
 
@@ -59,8 +60,17 @@ function RecordButton() {
                     },
                 })
                 .then((response) => {
-                    // Handle success
-                    console.log('Response:', response.data.track);
+
+                    // Handling data
+                    const Track = response.data;
+                    console.log(Track);
+                    const SongObject = new Song(Track.title, Track.subtitle, Track.images.coverart, Track.images.background)
+                    SongObject.GenerateHashID();
+                    console.log(SongObject.GetSongDetails());
+                    
+                    // Uploading the song
+                    SongObject.UpdateDatabase();
+
                 })
                 .catch(
                     function (error) {

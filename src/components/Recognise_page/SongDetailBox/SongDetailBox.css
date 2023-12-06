@@ -1,0 +1,40 @@
+.Detail-box li {
+    list-style-type: none;
+}
+
+.Detail-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100%;
+
+    border: solid 1px #616060;
+    border-radius: 6px;
+
+    
+}
+
+.Detail-box img {
+    border-radius: 5px;
+    margin: 7px;
+}
+
+.background-blur {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+
+}
+
+.background-image {
+    border-radius: 5px;
+}
+
+.Detail-box .details {
+    text-align: center;
+
+    padding: 10px;
+}

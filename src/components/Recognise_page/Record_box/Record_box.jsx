@@ -1,6 +1,7 @@
 import React from "react";
 import "./Record_box.css";
-import RecordButton from "../Record_button/Record_button";
+
+import RecordButton from '../Record_button/Record_button'
 
 
 function Recorder() {
