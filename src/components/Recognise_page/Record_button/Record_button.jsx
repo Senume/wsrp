@@ -1,12 +1,16 @@
 // import React, {useState} from "react";
 import { FaMicrophone } from "react-icons/fa";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import "./Record_button.css";
 
 import Song from '../../../utils/SongClass';
+import { UpdateCurrentSongState} from "../../Slicer/UserSlicer";
 
 function RecordButton() {
+
+    const dispatch = useDispatch();
 
     function Recording() {
 
@@ -69,32 +73,13 @@ function RecordButton() {
                     console.log(SongObject.GetSongDetails());
                     
                     // Uploading the song
-                    SongObject.UpdateDatabase();
+                    SongObject.UpdateDatabase().then(() => dispatch(UpdateCurrentSongState(SongObject.ID)));
 
                 })
                 .catch(
                     function (error) {
-                        if (error.response) {
-                          // The request was made and the server responded with a status code
-                          // that falls out of the range of 2xx
-                          console.log("Error: 1");
-                          console.log(error.response.data);
-                          console.log(error.response.status);
-                          console.log(error.response.headers);
-                        } else if (error.request) {
-                          // The request was made but no response was received
-                          // error.request is an instance of XMLHttpRequest in the browser and an instance of
-                          // http.ClientRequest in node.js
-                          console.log("Error: 2");
-                          console.log(error.message);
-                        } else {
-                          // Something happened in setting up the request that triggered an Error
-                          console.log("Error: 3");
-                          console.log('Error', error.message);
-                        }
-
-                      }
-
+                        console.log("Error: ",error);
+                    }
                 );
             };
 

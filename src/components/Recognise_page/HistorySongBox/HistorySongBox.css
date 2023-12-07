@@ -1,0 +1,15 @@
+.HistorySongBox {
+    padding: 10px;
+    border: solid 1px #666565;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 200px;
+}
+
+.HistorySongBox li {
+    list-style-type: none;
+}

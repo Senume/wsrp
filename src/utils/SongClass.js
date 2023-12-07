@@ -66,5 +66,23 @@ export default class Song {
         return Response.data;
     }
 
+    async ListDetails(listid) {
+        
+        try {
+            const Response = await axios.post('http://localhost:3500/detaillist', {
+                listid: listid
+            }, {
+                headers: {
+                    "Content-Type": 'application/json',
+                }
+            });
+    
+            return Response.data;
+        } catch (error) {
+            console.error("Error in ListDetails:", error);
+            throw error; // Re-throw the error so it can be handled by the calling code
+        }
+    }
+
 };
 

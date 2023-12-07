@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+
 import Song from "../../../utils/SongClass";
 
 import './SongDetailBox.css'
@@ -8,19 +9,28 @@ import './SongDetailBox.css'
 function SongDetailBox (props) {
     
     const [Details, setDetails] = useState({});
+    console.log("Component Props: ", props.id);
 
     useEffect(() => {
-        const SongObject = new Song();
-    
-        // Assuming GetDetails returns a Promise
-        SongObject.GetDetails(props.id)
-          .then((details) => {
-            // Update the state with the details
-            setDetails(details);
-          })
-          .catch((error) => {
-            console.error("Error retrieving details:", error);
-          });
+
+        if (props.id !== undefined && props.id !== null) {
+            const SongObject = new Song();
+        
+            // Assuming GetDetails returns a Promise
+            SongObject.GetDetails(props.id)
+            .then((details) => {
+                // Update the state with the details
+                                
+                if (details === undefined) {
+                    SongObject.GetDetails(props.id)
+                    setDetails(details);
+                } else  setDetails(details);
+
+            })
+            .catch((error) => {
+                console.log("Error retrieving details:", error);
+            });    
+        }
     
       }, [props.id]);
     
@@ -51,7 +61,7 @@ function SongDetailBox (props) {
                         }}
                     >
 
-                    <img src={Details.CoverURL} width={150}></img>
+                    <img src={Details.CoverURL} width={150} alt= "CoverART"></img>
                     
                     </div>
                     

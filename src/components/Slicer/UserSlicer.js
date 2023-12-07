@@ -6,8 +6,8 @@ const initialState = {
     Email: null,
     UserType: null,
     PlaylistList: [],
-    HistoryList: [],
-    CurrentSong: null
+    HistoryList: [9822579481960, 363418137682, 3825185555951, 2371941421287],
+    CurrentSong: 10469201894658
 };
 
 // Create a user slice with reducer functions
@@ -34,12 +34,17 @@ const UserSlicer = createSlice({
         state.HistoryList = state.HistoryList.push(action.payload);
     },
     UpdateDatabase: (state, action) => {}
-    },
+    ,
+    UpdateCurrentSongState: (state, action) =>{
+        state.CurrentSong = action.payload;
+        state.HistoryList.push(action.payload);
+    }
+    }
 
 });
 
 // Export actions
-export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory } = UserSlicer.actions;
+export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory, UpdateDatabase, UpdateCurrentSongState} = UserSlicer.actions;
 
 // Export the reducer
 export default UserSlicer.reducer;

@@ -1,12 +1,12 @@
-import { Route, Router, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 
-
-import GridLayout from "./components/Grid/grid";
+import GridLayout from "./components/Recognise_page/Grid/grid";
 import LoginPage from "./components/Login/Login";
 import SignUpPage from "./components/Login/SignUp";
 import Navbar from "./components/Navbar/Navbar";
 
 import "./App.css";
+
 
 function App() {
   return (
