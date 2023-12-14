@@ -1,0 +1,10 @@
+.playlistTab {
+    border: solid 1px;
+
+    width: 300px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+}

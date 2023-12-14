@@ -1,0 +1,27 @@
+.historybox {
+    margin: 2px;
+    padding: 5px;
+    
+    border: solid 1px;
+
+    display: flex;
+    justify-content: flex-start;
+
+    align-items: center;
+}
+
+.historybox li  {
+    list-style-type: none;
+}
+
+.historybox .content {
+
+    width :100%;
+
+    padding-left: 15px;
+
+
+    display: flex;
+    justify-items: space-between;
+    align-items: center;
+}

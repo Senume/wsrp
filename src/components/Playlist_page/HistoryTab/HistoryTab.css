@@ -1,0 +1,12 @@
+.list li {
+    
+    list-style-type: none;
+    
+}
+
+.historylist {
+    border: solid 1px;
+
+    width: 300px;
+    margin:15px;
+}

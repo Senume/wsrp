@@ -29,14 +29,14 @@ export default class Recognition{
               'X-RapidAPI-Host': process.env.APIHOST
             },
             data: base64
-          };
+        };
           
-          try {
+        try {
               const response = await axios.request(options);
               return response.data;
-          } catch (error) {
-              console.error(error);
-        }
+        } catch (error) {
+              console.log('"songs/detect" endpoint Recognition Class error',error.message);
+            }
         
 
         

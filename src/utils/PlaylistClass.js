@@ -1,4 +1,5 @@
 import hashIt from "hash-it";               // Library to handle Hash functionalities
+import axios from "axios";
 
 /**
  * @constructor Create a new instance of Playlist to hold the specified song list to a user.
@@ -7,7 +8,7 @@ import hashIt from "hash-it";               // Library to handle Hash functional
  */
 export default class Playlist {
 
-    constructor(playlistName, userId) {
+    constructor(playlistName = null, userId = null) {
         this.Name = playlistName;
         this.UserId = userId;
         this.SongList = [];
@@ -54,10 +55,56 @@ export default class Playlist {
      */
     GetSongList() {
         return {
-                    id: this.ID,
-                    songname: this.Name,
-                    author: this.UserId,
-                    songlist: this.SongList
+                    ID: this.ID,
+                    Name: this.Name,
+                    UserId: this.UserId,
+                    SongList: this.SongList
                 }
+    }
+
+    async GetPlaylistDetails(list) {
+        console.log('Inside Plalist class',list)
+        try {
+            const response = await axios.post('http://localhost:3500/retrieve/playlist', {
+                listid: list
+            }, {
+                headers: {
+                    "Content-Type": 'application/json',
+                }})
+
+            return response.data;
+        } catch (error) {
+            console.log('"/retrieve/playlist" endpoint Playlist class error: ' + error.message);
+            return 0;
+        }
+    }
+
+    async UpdatePlaylistDatabase(Data) {
+        try {
+            const response = await axios.post('http://localhost:3500/addplaylist', {
+                playlist: Data
+            }, {
+                headers: {
+                    "Content-Type": 'application/json',
+                }})
+
+            return response.data;
+        } catch (error) {
+            console.log('Playlist class error: ' + error.message);
+        }
+
+    }
+
+    async GetPlaylistbyID(id) { 
+        try {
+            let url = 'http://localhost:3500/playlistdetails/' + id;
+            console.log("Resource locator for the playlist: ", url);
+            const response = await axios.get(url);
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            console.log('"playlistdetails" endpoint Playlist class error: ' + error.message);
+            return 0;
+        }
     }
 }

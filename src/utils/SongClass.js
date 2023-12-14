@@ -60,10 +60,15 @@ export default class Song {
     }
 
     async GetDetails(id) {
+        try{
+            let url = 'http://localhost:3500/songdetails/' + id
+            var Response = await axios.get(url);
+            return Response.data;
+        } catch (error) {
+            console.log('"songdetails" endpoint Song Class error: ', error.message);
+            return 0;
+        }
         
-        let url = 'http://localhost:3500/songdetails/' + id
-        var Response = await axios.get(url);
-        return Response.data;
     }
 
     async ListDetails(listid) {
@@ -79,8 +84,8 @@ export default class Song {
     
             return Response.data;
         } catch (error) {
-            console.error("Error in ListDetails:", error);
-            throw error; // Re-throw the error so it can be handled by the calling code
+            console.log('"detaillist" endpoint Song Class error', error.message);
+            return 0;
         }
     }
 

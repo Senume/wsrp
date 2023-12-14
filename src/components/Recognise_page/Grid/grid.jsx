@@ -23,13 +23,16 @@ function GridLayout() {
           const songObject = new Song();
           const details = await songObject.ListDetails(history.slice(-4));
 
+          if (details) {
           var Rdetails = history.slice(-4).map(ID => {
             return details.filter(record => record.ID === ID)[0];
           })
 
           setSongDetails(Rdetails);
+
           console.log("History ID: ", history.slice(-4));
           console.log("History Details: ", Rdetails);
+        }
           
         } catch (error) {
           // Handle the error

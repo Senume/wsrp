@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import "./Record_button.css";
 
 import Song from '../../../utils/SongClass';
-import { UpdateCurrentSongState} from "../../Slicer/UserSlicer";
+import { UpdateCurrentSongState } from "../../Slicer/UserSlicer";
 
 function RecordButton() {
 
@@ -70,7 +70,7 @@ function RecordButton() {
                     console.log(Track);
                     const SongObject = new Song(Track.title, Track.subtitle, Track.images.coverart, Track.images.background)
                     SongObject.GenerateHashID();
-                    console.log(SongObject.GetSongDetails());
+                    console.log("Recognised Songs ID", SongObject.GetSongDetails());
                     
                     // Uploading the song
                     SongObject.UpdateDatabase().then(() => dispatch(UpdateCurrentSongState(SongObject.ID)));
@@ -94,9 +94,6 @@ function RecordButton() {
                 console.log("Stopped Recording");
             
             }, 4500);
-            
-
-    
             // console.log(MediaRec.ondataavailable);
         });
 

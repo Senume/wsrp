@@ -2,12 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Define the initial state for the user slice
 const initialState = {
-    Username: null,
+    Username: 'user111',
     Email: null,
     UserType: null,
-    PlaylistList: [],
-    HistoryList: [9822579481960, 363418137682, 3825185555951, 2371941421287],
-    CurrentSong: 10469201894658
+    PlaylistList: [123456, 890123, 567890, 345678],
+    HistoryList: [9822579481960, 363418137682, 5669251427026, 17189095737264],
+
+    CurrentSong: 9822579481960, 
+    CurrentPlaylist: null,
+    ToBeAdded: null
 };
 
 // Create a user slice with reducer functions
@@ -23,7 +26,8 @@ const UserSlicer = createSlice({
         state.HistoryList = action.payload.HistoryList;
     },
     AddaPlaylist: (state, action) => {
-        state.PlaylistList = state.PlaylistList.push(action.payload);
+        state.PlaylistList.push(action.payload);
+        console.log(state.PlaylistList);
     },
     DeleteaPlaylist: (state, action) => {
         const Index = state.PlaylistList.findIndex((element) => element === action.payload);
@@ -35,16 +39,24 @@ const UserSlicer = createSlice({
     },
     UpdateDatabase: (state, action) => {}
     ,
-    UpdateCurrentSongState: (state, action) =>{
+    UpdateCurrentSongState: (state, action) => {
         state.CurrentSong = action.payload;
         state.HistoryList.push(action.payload);
+    },
+    UpdateCurrentPlaylist: (state, action) => {
+        state.CurrentPlaylist = action.payload;
+    },
+    UpdateSelectedSongID: (state, action) => {
+        state.ToBeAdded = action.payload;
+    },
+    RemoveSelectedSongID: (state, action) => {
+        state.ToBeAdded = null;
     }
     }
-
 });
 
 // Export actions
-export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory, UpdateDatabase, UpdateCurrentSongState} = UserSlicer.actions;
+export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory, UpdateDatabase, UpdateCurrentSongState, UpdateCurrentPlaylist, UpdateSelectedSongID, RemoveSelectedSongID} = UserSlicer.actions;
 
 // Export the reducer
 export default UserSlicer.reducer;

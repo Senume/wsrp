@@ -14,7 +14,7 @@ function Navbar() {
                     <li>About</li>
                     <li>Dashboard</li>
                     <li><NavLink to='/'>Recognise</NavLink></li>
-                    <li>Playlist</li>
+                    <li><NavLink to='/playlists'>Playlist</NavLink></li>
                     <li><NavLink to='/login'>Login</NavLink></li>
 
             </div>

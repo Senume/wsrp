@@ -21,10 +21,10 @@ function SongDetailBox (props) {
             .then((details) => {
                 // Update the state with the details
                                 
-                if (details === undefined) {
+                if (details && details !== undefined ) {
                     SongObject.GetDetails(props.id)
                     setDetails(details);
-                } else  setDetails(details);
+                } 
 
             })
             .catch((error) => {
