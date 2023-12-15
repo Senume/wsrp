@@ -10,7 +10,9 @@ const initialState = {
 
     CurrentSong: 9822579481960, 
     CurrentPlaylist: null,
-    ToBeAdded: null
+    ToBeAdded: null,
+
+    FileUploadList: null
 };
 
 // Create a user slice with reducer functions
@@ -51,12 +53,18 @@ const UserSlicer = createSlice({
     },
     RemoveSelectedSongID: (state, action) => {
         state.ToBeAdded = null;
+    },
+    UpdateFileUploadList: (state, action) => {
+        state.FileUploadList = action.FileUploadList;
+    },
+    FilterOutIDUploadList: (state, action) => {
+        state.FileUploadList =  state.FileUploadList.filter(item => item !== action.payload);
     }
     }
 });
 
 // Export actions
-export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory, UpdateDatabase, UpdateCurrentSongState, UpdateCurrentPlaylist, UpdateSelectedSongID, RemoveSelectedSongID} = UserSlicer.actions;
+export const { setUser, AddaPlaylist, DeleteaPlaylist, AddaHistory, UpdateDatabase, UpdateCurrentSongState, UpdateCurrentPlaylist, UpdateSelectedSongID, RemoveSelectedSongID, UpdateFileUploadList, FilterOutIDUploadList} = UserSlicer.actions;
 
 // Export the reducer
 export default UserSlicer.reducer;

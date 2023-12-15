@@ -5,6 +5,7 @@ import LoginPage from "./components/Login/Login";
 import SignUpPage from "./components/Login/SignUp";
 import Navbar from "./components/Navbar/Navbar";
 import PlaylistLayout from "./components/Playlist_page/PlaylistLayout/PlaylistLayout";
+import DashLayout from "./components/Dashboard/DashLayout/DashLayout";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/playlists" element={<PlaylistLayout />}/>
+            <Route path="/dash" element={<DashLayout />}/>
           </Routes>
         </main>        
       </div>
