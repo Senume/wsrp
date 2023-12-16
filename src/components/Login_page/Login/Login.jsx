@@ -3,14 +3,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 // import User from "../Slicer/UserSlicer";
 // import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Slicer/UserSlicer";
 
+
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const nav = useNavigate();
+
+
+  
   const UpdateUser = (data) => {
     dispatch(setUser(data));
   };
@@ -30,6 +36,8 @@ const LoginPage = () => {
       // const state = useSelector((state) => state.User);
       console.log("Login sucecessful:", response.data);
       UpdateUser(response.data);
+      nav('/');
+
       // console.log("state is ", state);
       // Handle successful login (e.g., redirect to dashboard)
     } catch (error) {

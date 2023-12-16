@@ -2,16 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Define the initial state for the user slice
 const initialState = {
-    Username: "user111",
+    Username: null,
     Email: null,
-    UserType: null,
-    PlaylistList: [123456, 890123, 567890, 345678],
-    HistoryList: [
-        9822579481960, 363418137682, 5669251427026, 17189095737264,
-        975017342720,
-    ],
+    UserType: "global",
+    PlaylistList: [],
+    HistoryList: [],
 
-    CurrentSong: 9822579481960,
+    CurrentSong: null,
     CurrentPlaylist: null,
     ToBeAdded: null,
 
@@ -59,6 +56,7 @@ const UserSlicer = createSlice({
         },
         UpdateCurrentPlaylist: (state, action) => {
             state.CurrentPlaylist = action.payload;
+            console.log(state.CurrentPlaylist);
         },
         UpdateSelectedSongID: (state, action) => {
             state.ToBeAdded = action.payload;
@@ -77,13 +75,13 @@ const UserSlicer = createSlice({
         ResetUser: (state, action) => {
             state.Username = null;
             state.Email = null;
-            state.PlaylistList = null;
-            state.HistoryList = null;
-            state.UserType = null;
+            state.PlaylistList = [];
+            state.HistoryList = [];
+            state.UserType = "global";
             state.age = null;
             state.password = null;
             state.gender = null;
-            console.log("reset");
+            console.log("reset", state);
         },
     },
 });

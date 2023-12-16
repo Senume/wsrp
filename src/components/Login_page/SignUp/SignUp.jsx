@@ -3,9 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
+  const nav = useNavigate();
+
   const [UserName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +30,8 @@ const SignUpPage = () => {
       });
 
       console.log("Signup successful:", response.data);
+
+      nav('/login');
       // Handle successful signup (e.g., redirect to login page)
     } catch (error) {
       console.error("Signup failed:", error.message);
