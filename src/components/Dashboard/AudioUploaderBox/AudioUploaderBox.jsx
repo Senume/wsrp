@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './AudioUploaderBox.css'
+
 const AudioUploaderBox = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -34,8 +36,7 @@ const AudioUploaderBox = (props) => {
     <div className='uploaderBox'>
 
         <img src={props.value.CoverURL} width={50} alt="coverart" />
-        <li>{props.value.SongTitle}</li>
-
+        <li className='title'>{props.value.SongTitle}</li>
         <input type="file" accept="audio/*" onChange={handleFileChange} />
         <button onClick={handleUpload} disabled={!selectedFile}>
           Upload Audio

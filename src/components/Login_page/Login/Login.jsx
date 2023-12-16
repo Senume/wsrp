@@ -4,23 +4,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+// import User from "../Slicer/UserSlicer";
+// import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Slicer/UserSlicer";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const UpdateUser = (data) => {
+    dispatch(setUser(data));
+  };
+  const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async () => {
+  const HandleLogin = async () => {
     try {
       // Replace 'http://localhost:5000' with your actual backend API URL
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
+      const response = await axios.post("http://localhost:3500/login", {
+        Username: username,
         password,
         rememberMe,
       });
-
-      console.log("Login successful:", response.data);
+      // const state = useSelector((state) => state.User);
+      console.log("Login sucecessful:", response.data);
+      UpdateUser(response.data);
+      // console.log("state is ", state);
       // Handle successful login (e.g., redirect to dashboard)
     } catch (error) {
       console.error("Login failed:", error.message);
@@ -31,27 +41,29 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  // const val = useSelector((state) => state.user);
+  // console.log("selected", val);
   return (
+    // <Provider store={store}>
     <div className="container mt-5" style={{ backgroundColor: "white" }}>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
             <div className="card-header">
-              <h1 className="text-center">Login</h1>
+              <h1 className="text-center">Login </h1>
             </div>
             <div className="card-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email:
+                  <label htmlFor="username" className="form-label">
+                    UserName:
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    id="username"
+                    value={username}
+                    onChange={(e) => setusername(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
@@ -95,7 +107,7 @@ const LoginPage = () => {
                     type="button"
                     className="btn btn-primary rounded-0 border-0"
                     style={{ fontSize: "1.2em" }}
-                    onClick={handleLogin}
+                    onClick={HandleLogin}
                   >
                     Login
                   </button>
@@ -113,6 +125,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    // </Provider>
   );
 };
 

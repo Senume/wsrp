@@ -9,7 +9,7 @@ import Song from "../../../utils/SongClass";
 import SongBox from "../SongBox/SongBox";
 import './SongsTab.css';
 
-function SongsTab () {
+function SongsTab (props) {
 
     var playlistID = useSelector( state => state.user.CurrentPlaylist);
     var ToBeAddedSong = useSelector( state => state.user.ToBeAdded);
@@ -65,7 +65,7 @@ function SongsTab () {
         </div>
 
         <div className="list">
-            { Songlist.map((item) => <SongBox value={item} /> )}
+            { Songlist.map((item) => <SongBox value={item} handle={props.handle}/> )}
         </div>
     </div>
     );

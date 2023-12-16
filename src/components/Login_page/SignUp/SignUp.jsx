@@ -6,24 +6,25 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 const SignUpPage = () => {
-  const [name, setName] = useState("");
+  const [UserName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
+  const [userType, setuserType] = useState("");
   const [gender, setGender] = useState("male"); // Default to 'male'
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignUp = async () => {
     try {
       // Replace 'http://localhost:5000' with your actual backend API URL
-      const response = await axios.post("http://localhost:5000/signup", {
-        name,
+      const response = await axios.post("http://localhost:3500/signup", {
+        UserName,
         email,
         password,
-        confirmPassword,
         age,
         gender,
+        userType,
       });
 
       console.log("Signup successful:", response.data);
@@ -49,15 +50,15 @@ const SignUpPage = () => {
             <div className="card-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label text-start">
+                  <label htmlFor="UserName" className="form-label text-start">
                     Name:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    id="UserName"
+                    value={UserName}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
@@ -155,6 +156,18 @@ const SignUpPage = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
+                <div className="mb-3">
+                  <label htmlFor="userType" className="form-label text-start">
+                    User Code:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="userType"
+                    value={userType}
+                    onChange={(e) => setuserType(e.target.value)}
+                  />
+                </div>
                 <div className="d-grid">
                   {/* Use d-grid to make the button take full width */}
                   <button
@@ -168,7 +181,7 @@ const SignUpPage = () => {
                 </div>
                 <div className="text-start mt-3">
                   <span>Already have an account? </span>
-                  <NavLink to="/">Login</NavLink>
+                  <NavLink to="/login">Login</NavLink>
                 </div>
               </form>
             </div>

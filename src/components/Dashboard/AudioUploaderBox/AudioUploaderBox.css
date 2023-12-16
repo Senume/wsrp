@@ -1,0 +1,15 @@
+.uploaderBox li {
+    list-style-type: none;
+}
+
+.uploaderBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border: 1px solid;
+
+    padding: 2px;
+    margin: 2px;
+
+}
