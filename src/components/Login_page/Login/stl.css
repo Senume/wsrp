@@ -1,0 +1,67 @@
+/* stl.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .container {
+    margin-top: 50px;
+    background-color: #f4f4f4; /* Light gray background color */
+    padding: 20px; /* Add padding for a cleaner look */
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .input-group {
+    position: relative;
+  }
+  
+  .form-control {
+    margin-bottom: 15px; /* Add margin between input fields */
+  }
+  
+  .btn-outline-secondary {
+    z-index: 2;
+  }
+  
+  .form-check-input {
+    margin-top: 0.2rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .text-center {
+    margin-top: 15px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      max-width: 100%;
+    }
+  }
+  

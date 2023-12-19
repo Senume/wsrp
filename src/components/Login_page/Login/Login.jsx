@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import "./stl.css";
 // import User from "../Slicer/UserSlicer";
 // import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
@@ -57,9 +57,7 @@ const LoginPage = () => {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header">
-              <h1 className="text-center">Login </h1>
-            </div>
+          
             <div className="card-body">
               <form>
                 <div className="mb-3">
