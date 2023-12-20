@@ -34,56 +34,73 @@ function Navbar() {
         }
     };
 
+    let userTypeSpecificContent;
+    switch (user.UserType) {
+        case "global":
+            userTypeSpecificContent = (
+                <>
+                    {/* Specific content for global user */}
+                    <li>About</li>
+                    <li><NavLink to='/'>Recognise</NavLink></li>
+                    <li><NavLink to='/login'>Login</NavLink></li>
+                </>
+            );
+            break;
+
+        case "common":
+            userTypeSpecificContent = (
+                <>
+                    <li>About</li>
+                    <li><NavLink to='/'>Recognise</NavLink></li>
+                    <li><NavLink to='/viewplaylist'>View Playlist</NavLink></li>
+                    <li><NavLink to='/UpdateProfile'>Update Profile</NavLink></li>
+                    <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
+                </>
+
+            );
+            break;
+
+        case "playlist-maker":
+            userTypeSpecificContent = (
+                <>
+                    {/* Specific content for playlist-maker user */}
+                    <li>About</li>
+                    <li><NavLink to='/playlists'>Make Playlist</NavLink></li>
+                    <li><NavLink to='/UpdateProfile'>Update Profile</NavLink></li>
+                    <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
+                </>
+            );
+            break;
+        case "admin":
+            userTypeSpecificContent = (
+                <>
+                    {/* Specific content for admin user */}
+                    <li><NavLink to='/dash'>Dashboard</NavLink></li>
+                    <li><NavLink to='/'>Recognise</NavLink></li>
+                    <li><NavLink to='/playlists'>Make Playlist</NavLink></li>
+                    <li><NavLink to='/viewplaylist'>View Playlist</NavLink></li>
+                    <li><NavLink to="/UpdateProfile">Update Profile</NavLink></li>
+                    <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
+                </>
+            );
+            break;
+        default:
+            userTypeSpecificContent = null;
+    }
+
     return (
         <nav className="bar">
             <div className="logo">
                 <img src={image} width={150} alt="LOGO"/>
             </div>
             <div className="menu">
-                {
-                    (user.Username === null && user.UserType === "global")?
-                    (<>
-                    <li>About</li>
-                    <li><NavLink to='/'>Recognise</NavLink></li>
-                    <li><NavLink to='/login'>Login</NavLink></li>
-                    <li><NavLink to='/viewplaylist'>ViewPlaylist</NavLink></li>
+                {/* Common elements for all user types */}
 
-                    </>):
-                    (<>
-                    {(user.Username !== null && user.UserType === "common")?
-                    (<>
-                    <li>About</li>
-                    <li><NavLink to='/'>Recognise</NavLink></li>
-                    <li><NavLink to='/viewplaylist'>Playlist</NavLink></li>
-                    <li><NavLink to="/UpdateProfile">Update Profile</NavLink></li>
-                    <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
-
-
-
-                    </>):(<>
-                        <li>About</li>
-                        <li><NavLink to='/dash'>Dashboard</NavLink></li>
-                        <li><NavLink to='/'>Recognise</NavLink></li>
-                        <li><NavLink to='/playlists'>Playlist</NavLink></li>
-                        <li><NavLink to="/UpdateProfile">Update Profile</NavLink></li>
-                        <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
-                        </>)}
-                    </>)
-                    
-                }
-                    {/* <li>About</li>
-                    <li><NavLink to='/dash'>Dashboard</NavLink></li>
-                    <li><NavLink to='/'>Recognise</NavLink></li>
-                    <li><NavLink to='/playlists'>Playlist</NavLink></li>
-                    <li><NavLink to='/login'>Login</NavLink></li>
-                    <li><NavLink to="/UpdateProfile">Update Profile</NavLink></li>
-                    <button className="btn btn-danger" onClick={HandleLogout}>Logout</button> */}
-
-
-
+                {/* User type specific content */}
+                {userTypeSpecificContent}
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar

@@ -9,7 +9,7 @@ const SignUpPage = () => {
   const nav = useNavigate();
 
   const [UserName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
@@ -23,7 +23,7 @@ const handleSignUp = async () => {
         // Replace 'http://localhost:5000' with your actual backend API URL
         const response = await axios.post("http://localhost:3500/signup", {
           UserName,
-          email,
+          Email,
           password,
           age,
           gender,
@@ -70,14 +70,14 @@ const handleSignUp = async () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label text-start">
+                  <label htmlFor="Email" className="form-label text-start">
                     Email:
                   </label>
                   <input
-                    type="email"
+                    type="Email"
                     className="form-control"
-                    id="email"
-                    value={email}
+                    id="Email"
+                    value={Email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>

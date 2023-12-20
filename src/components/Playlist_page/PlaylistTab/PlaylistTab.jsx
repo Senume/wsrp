@@ -13,7 +13,7 @@ import './PlaylistTab.css';
 function PlaylistTab() {
 
     var Playlist_Ids = useSelector(state => state.user.PlaylistList);
-    const userId = useSelector(state => state.user.Username);
+    const userId = useSelector(state => state.user.UserName);
     var ToBeAddedSong = useSelector( state => state.user.ToBeAdded);
 
     console.log("Playlist IDs: ", Playlist_Ids);

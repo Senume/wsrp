@@ -11,18 +11,20 @@ import './UserManager.css'
 const UserManager = () => {
 
     const [Users, setUsers] = useState([]);
-    const currentuser = useSelector(state => state.user.Username)
+    const currentuser = useSelector(state => state.user.UserName)
 
     useEffect(() => {
         const fetchData = async() => {
             const MediaObject = new Media();
-            const Data = await MediaObject.GetAllUser();
-            const OtherUsers = Data.filter(item => item.UserName !== currentuser)
-            console.log(OtherUsers);
+            for (let i = 0; i<5; i++){
+                const Data = await MediaObject.GetAllUser();
+                if(Data) {
+                    const OtherUsers = Data.filter(item => item.UserName !== currentuser)
+                    setUsers(OtherUsers);
+                    console.log(OtherUsers);
+                }
 
-
-
-            if (Data) setUsers(OtherUsers);
+            }
         }
         fetchData();
     }, []);

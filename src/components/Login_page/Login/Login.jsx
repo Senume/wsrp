@@ -20,7 +20,7 @@ const LoginPage = () => {
   const UpdateUser = (data) => {
     dispatch(setUser(data));
   };
-  const [username, setusername] = useState("");
+  const [UserName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +29,7 @@ const LoginPage = () => {
     try {
       // Replace 'http://localhost:5000' with your actual backend API URL
       const response = await axios.post("http://localhost:3500/login", {
-        Username: username,
+        UserName: UserName,
         password,
         rememberMe,
       });
@@ -64,15 +64,15 @@ const LoginPage = () => {
             <div className="card-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
+                  <label htmlFor="UserName" className="form-label">
                     UserName:
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setusername(e.target.value)}
+                    id="UserName"
+                    value={UserName}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">

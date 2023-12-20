@@ -12,7 +12,7 @@ import { setUser } from "../../Slicer/UserSlicer";
 
 const UpdateProfile = () => {
   const [UserName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const [Email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("male"); // Default to 'male'
@@ -25,19 +25,19 @@ const UpdateProfile = () => {
   };
   const handleUpdate = async () => {
     try {
-      let tempuser = val.Username;
+      let tempuser = val.UserName;
       const pass = await axios.post("http://localhost:3500/finduser", {
-        UserName: val.Username,
+        UserName: val.UserName,
       });
 
       console.log(pass, password);
       if (pass.data.password === password) {
-        UpdateUser({ UserName, email, age, gender });
+        UpdateUser({ UserName, Email, age, gender });
         // Replace 'http://localhost:5000' with your actual backend API URL
         const response = await axios.post("http://localhost:3500/userupdate", {
           OldUser: tempuser,
-          Username: UserName,
-          email,
+          UserName: UserName,
+          Email,
           age,
           gender,
         });
@@ -56,14 +56,14 @@ const UpdateProfile = () => {
     setShowPassword(!showPassword);
   };
 
-  //   UserName = val.Username;
+  //   UserName = val.UserName;
   useEffect(() => {
-    // Set the initial value from val.Username when the component mounts
-    setUserName(val.Username);
+    // Set the initial value from val.UserName when the component mounts
+    setUserName(val.UserName);
     setEmail(val.Email);
     setAge(val.age);
     setGender(val.gender);
-  }, [val.Username]);
+  }, [val.UserName]);
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
@@ -80,8 +80,8 @@ const UpdateProfile = () => {
                   </label>
                   <input
                     type="text"
-                    // defaultValue={val.Username}
-                    // placeholder={`${val.Username}`}
+                    // defaultValue={val.UserName}
+                    // placeholder={`${val.UserName}`}
                     className="form-control"
                     id="UserName"
                     value={UserName}
@@ -89,15 +89,15 @@ const UpdateProfile = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label text-start">
+                  <label htmlFor="Email" className="form-label text-start">
                     Email:
                   </label>
                   <input
-                    type="email"
+                    type="Email"
                     defaultValue={val.Email}
                     className="form-control"
-                    id="email"
-                    value={email}
+                    id="Email"
+                    value={Email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>

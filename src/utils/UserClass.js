@@ -2,11 +2,11 @@ import axios from "axios";
 
 export default class User {
     /**
-     * @param {any} username Unique ID for logged-in user
+     * @param {any} UserName Unique ID for logged-in user
      * @param {any} password password to grant access token to logged-in user.
      */
-    constructor(username) {
-        this.Username = username;
+    constructor(UserName) {
+        this.UserName = UserName;
         this.Email = null;
         this.UserType = null;
         this.PlaylistList = [];
@@ -20,7 +20,7 @@ export default class User {
      */
     GetUserDetails() {
         const details = {
-            Username: this.Username,
+            UserName: this.UserName,
             Email: this.Email,
             UserType: this.UserType,
             PlaylistList: this.PlaylistList,
@@ -41,7 +41,7 @@ export default class User {
         try {
             // Replace 'http://localhost:5000' with your actual backend API URL
             const response = await axios.post("http://localhost:5000/login", {
-                UserName: this.Username,
+                UserName: this.UserName,
                 Password: password,
             });
 
@@ -55,7 +55,7 @@ export default class User {
         const response = await axios.post(
             "http://localhost:3500/updateuserrights",
             {
-                Username: ID,
+                UserName: ID,
                 UserType: UserType,
             }
         );

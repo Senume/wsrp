@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Define the initial state for the user slice
 const initialState = {
-    Username: null,
+    UserName: null,
     Email: null,
     UserType: "global",
     PlaylistList: [],
@@ -22,8 +22,8 @@ const UserSlicer = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            state.Username = action.payload.UserName;
-            state.Email = action.payload.email;
+            state.UserName = action.payload.UserName;
+            state.Email = action.payload.Email;
 
             if ("PlaylistList" in action.payload) {
                 state.PlaylistList = action.payload.PlaylistList;
@@ -73,7 +73,7 @@ const UserSlicer = createSlice({
             );
         },
         ResetUser: (state, action) => {
-            state.Username = null;
+            state.UserName = null;
             state.Email = null;
             state.PlaylistList = [];
             state.HistoryList = [];
