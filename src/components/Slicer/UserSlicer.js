@@ -11,6 +11,7 @@ const initialState = {
     CurrentSong: null,
     CurrentPlaylist: null,
     ToBeAdded: null,
+    PlaySong: null,
 
     FileUploadList: null,
 };
@@ -56,7 +57,6 @@ const UserSlicer = createSlice({
         },
         UpdateCurrentPlaylist: (state, action) => {
             state.CurrentPlaylist = action.payload;
-            console.log(state.CurrentPlaylist);
         },
         UpdateSelectedSongID: (state, action) => {
             state.ToBeAdded = action.payload;
@@ -83,6 +83,9 @@ const UserSlicer = createSlice({
             state.gender = null;
             console.log("reset", state);
         },
+        UpdatePlaySong: (state, action) => {
+            state.PlaySong = action.payload;
+        },
     },
 });
 
@@ -100,6 +103,7 @@ export const {
     UpdateFileUploadList,
     FilterOutIDUploadList,
     ResetUser,
+    UpdatePlaySong,
 } = UserSlicer.actions;
 
 // Export the reducer

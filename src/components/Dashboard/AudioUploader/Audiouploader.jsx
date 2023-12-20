@@ -6,6 +6,8 @@ import Song from "../../../utils/SongClass";
 
 import AudioUploaderBox from "../AudioUploaderBox/AudioUploaderBox";
 
+import './Audiouploader.css'
+
 function AudioUploader() {
 
     const [NeedsUpload, setNeedsUpload] = useState([]);
@@ -58,7 +60,7 @@ function AudioUploader() {
     console.log('Needs to be uploaded:', NeedsUpload);
     console.log('Song details: ', SongDetails);
     return (
-    <div className="layout">
+    <div className="uploader">
 
         {SongDetails.map((items) => <AudioUploaderBox value = {items} handle = {handleWhenUploded} />)}
 

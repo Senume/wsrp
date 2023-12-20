@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { MdFileUpload } from "react-icons/md";
+import { FaRegDotCircle, FaDotCircle } from "react-icons/fa";
+
+
 import axios from 'axios';
 
 import './AudioUploaderBox.css'
@@ -10,12 +14,12 @@ const AudioUploaderBox = (props) => {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (ID) => {
     const formData = new FormData();
     formData.append('audioFile', selectedFile);
 
     try {
-      const response = await axios.post('http://localhost:3500/upload-audio/' + props.value.ID, formData);
+      const response = await axios.post('http://localhost:3500/upload-audio/' + ID, formData);
 
       if (response.status === 200) {
         console.log('Audio file uploaded successfully.');
@@ -34,13 +38,17 @@ const AudioUploaderBox = (props) => {
 
   return (
     <div className='uploaderBox'>
-
-        <img src={props.value.CoverURL} width={50} alt="coverart" />
+      <div className='content'>
+        <img className='coverart' src={props.value.CoverURL} width={50} alt="coverart" />
         <li className='title'>{props.value.SongTitle}</li>
-        <input type="file" accept="audio/*" onChange={handleFileChange} />
-        <button onClick={handleUpload} disabled={!selectedFile}>
-          Upload Audio
+      </div>
+      <div className='buttons'>
+        <input type="file" accept="audio/*" onChange={handleFileChange} id={props.value.ID} hidden/>
+        <label id='file-input-label' for={props.value.ID}>{selectedFile !== null ?<FaRegDotCircle />:<FaDotCircle />}</label>
+        <button className='upload-button' onClick={() => handleUpload(props.value.ID)} disabled={!selectedFile}>
+        <MdFileUpload />
         </button>
+      </div>
     </div>
   );
 };

@@ -46,13 +46,15 @@ function Navbar() {
                     <li>About</li>
                     <li><NavLink to='/'>Recognise</NavLink></li>
                     <li><NavLink to='/login'>Login</NavLink></li>
+                    <li><NavLink to='/viewplaylist'>ViewPlaylist</NavLink></li>
+
                     </>):
                     (<>
                     {(user.Username !== null && user.UserType === "common")?
                     (<>
                     <li>About</li>
                     <li><NavLink to='/'>Recognise</NavLink></li>
-                    <li><NavLink to='/playlists'>Playlist</NavLink></li>
+                    <li><NavLink to='/viewplaylist'>Playlist</NavLink></li>
                     <li><NavLink to="/UpdateProfile">Update Profile</NavLink></li>
                     <button className="btn btn-danger" onClick={HandleLogout}>Logout</button>
 

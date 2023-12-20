@@ -7,13 +7,23 @@ import React from "react";
 // import AudioUploaderBox from "../AudioUploaderBox/AudioUploaderBox";
 
 import AudioUploader from "../AudioUploader/Audiouploader";
+import CountBox from "../CountBox/CountBox";
+import UserManager from "../UserManager/UserManager";
 
+import './DashLayout.css';
 
 function DashLayout () {
     
     return (
     <div className="layout">
+        <div className="user-content">
+        <CountBox />
+        <UserManager/>
+        </div>
+        <div className="songs-upload">   
         <AudioUploader />
+        </div>
+        
     </div>);
 }
 

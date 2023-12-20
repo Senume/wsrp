@@ -5,11 +5,57 @@
 .uploaderBox {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
     border: 1px solid;
 
-    padding: 2px;
-    margin: 2px;
+    padding: 5px;
+    margin: 3px;
 
+}
+
+.content {
+    width: 400px;
+
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+}
+
+.content .title {
+    margin-left: 15px;
+}
+
+.buttons {
+    width: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#file-input-label {
+    scale: 1.4;
+}
+
+.buttons .upload-button {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.coverart {
+    border-radius: 4px;
+}
+
+.uploaderBox {
+    border-radius: 3px;
+    transition: transform 0.3s ease;
+}
+
+.uploaderBox:hover {
+    transform: scale(1.02);
 }

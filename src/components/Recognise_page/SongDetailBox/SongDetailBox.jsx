@@ -13,24 +13,25 @@ function SongDetailBox (props) {
 
     useEffect(() => {
 
-        if (props.id !== undefined && props.id !== null) {
-            const SongObject = new Song();
-        
-            // Assuming GetDetails returns a Promise
-            SongObject.GetDetails(props.id)
-            .then((details) => {
-                // Update the state with the details
-                                
-                if (details && details !== undefined ) {
-                    SongObject.GetDetails(props.id)
-                    setDetails(details);
-                } 
+        const fetchData = async () => {
 
-            })
-            .catch((error) => {
-                console.log("Error retrieving details:", error);
-            });    
+            try{
+            if (props.id !== undefined && props.id !== null) {
+                const SongObject = new Song();
+                
+                for (let i = 0; i < 5; i++){
+                const Data = await SongObject.GetDetails(props.id)
+                if (Data) setDetails(Data);
+                }
+
+
+            }}
+            catch (err) {
+                console.log(err.message);
+            }
         }
+
+        fetchData();
     
       }, [props.id]);
     

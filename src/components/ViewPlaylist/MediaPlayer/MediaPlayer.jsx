@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import './MediaPlayer.css';
 
-function MediaPlayer({ streamUrl }) {
+function MediaPlayer({ streamUrl, songdetails}) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -8,10 +9,11 @@ function MediaPlayer({ streamUrl }) {
   useEffect(() => {
     const loadAndPlayAudio = async () => {
 
-      console.log("Current Streaming URL: ", streamUrl);
+      console.log('Current Audio URL: ' + streamUrl);
       try {
         // Pause the current audio if any
         if (audioRef.current) {
+          // if(isPlaying)
           audioRef.current.pause();
         }
 
@@ -22,7 +24,8 @@ function MediaPlayer({ streamUrl }) {
         await audioRef.current.load();
 
         // Play the audio
-        audioRef.current.play();
+        // audioRef.current.play();
+        // setIsPlaying(true);
 
         // Set up event listeners for time updates
         audioRef.current.addEventListener("timeupdate", () => {
@@ -47,6 +50,8 @@ function MediaPlayer({ streamUrl }) {
         audioRef.current.removeEventListener("timeupdate", () => {});
         audioRef.current.removeEventListener("ended", () => {});
         audioRef.current = null;
+        if (isPlaying) setIsPlaying(false);
+
       }
     };
   }, [streamUrl]);
@@ -62,19 +67,15 @@ function MediaPlayer({ streamUrl }) {
     }
   };
 
-  const handleSeek = (e) => {
-    if (audioRef.current) {
-      const newTime = e.target.value;
-      audioRef.current.currentTime = newTime;
-      setCurrentTime(newTime);
-    }
-  };
+
 
   return (
-    <div>
-      <h2>Media Player</h2>
+    (audioRef !== null)
+    ?
+    <div className="mediaplayer">
+      <h2>{songdetails}</h2>
       <div>
-        <audio controls ref={audioRef} >
+        <audio controls ref={audioRef} hidden >
           Your browser does not support the audio element.
         </audio>
         <div>
@@ -83,12 +84,12 @@ function MediaPlayer({ streamUrl }) {
             type="range"
             value={currentTime}
             max={audioRef.current ? audioRef.current.duration : 0}
-            onChange={handleSeek}
           />
           <span>{formatTime(currentTime)}</span>
         </div>
       </div>
-    </div>
+    </div> : <div className="error Box">Select a song</div>
+
   );
 }
 

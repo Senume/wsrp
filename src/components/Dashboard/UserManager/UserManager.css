@@ -1,0 +1,10 @@
+.UserManager {
+    height: 650px;
+    width: 100%;
+    border: solid 1px;
+    margin: 5px;
+
+    overflow: auto;
+    max-height: 750px;
+    padding: 10px;
+}

@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import PlaylistLayout from "./components/Playlist_page/PlaylistLayout/PlaylistLayout";
 import DashLayout from "./components/Dashboard/DashLayout/DashLayout";
 import UpdateProfile from "./components/Login_page/ProfileUpdate/ProfileUpdate";
+import ViewPlaylistLayout from "./components/ViewPlaylist/PlaylistLayout/ViewPlaylistLayout";
 
 import "./App.css";
 
@@ -25,6 +26,10 @@ function App() {
                     <Route path="/dash" element={<DashLayout />} />
                     <Route path="/signup" element={<SignUpPage />} />
                     <Route path="/UpdateProfile" element={<UpdateProfile />} />
+                    <Route
+                        path="/viewplaylist"
+                        element={<ViewPlaylistLayout />}
+                    />
                 </Routes>
             </main>
         </div>

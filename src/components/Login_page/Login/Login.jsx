@@ -42,6 +42,7 @@ const LoginPage = () => {
       // Handle successful login (e.g., redirect to dashboard)
     } catch (error) {
       console.error("Login failed:", error.message);
+      alert("Incorrect Password")
       // Handle login failure (e.g., show error message)
     }
   };

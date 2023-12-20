@@ -1,19 +1,17 @@
 import axios from "axios";
 
-export default  class User {
-
+export default class User {
     /**
      * @param {any} username Unique ID for logged-in user
      * @param {any} password password to grant access token to logged-in user.
      */
     constructor(username) {
         this.Username = username;
-        this.Email =null;
+        this.Email = null;
         this.UserType = null;
         this.PlaylistList = [];
         this.HistoryList = [];
         this.accessToken = null;
-
     }
 
     /**
@@ -26,39 +24,42 @@ export default  class User {
             Email: this.Email,
             UserType: this.UserType,
             PlaylistList: this.PlaylistList,
-            HistoryList: this.HistoryList
-        }
+            HistoryList: this.HistoryList,
+        };
         return details;
     }
 
     /**
      * Updates the access token for the current logged-in user.
-     * @param {any} accessToken 
+     * @param {any} accessToken
      */
     UpdateAccessToken(accessToken) {
         this.accessToken = accessToken;
     }
 
-
-    async Login(password){
+    async Login(password) {
         try {
             // Replace 'http://localhost:5000' with your actual backend API URL
-            const response = await axios.post("http://localhost:5000/login", 
-            {
+            const response = await axios.post("http://localhost:5000/login", {
                 UserName: this.Username,
-                Password: password
-            }
-            );
+                Password: password,
+            });
 
             return response.data;
-        }catch (error) {
+        } catch (error) {
             return 1;
-        }};
-    
+        }
+    }
 
-    CreatePlaylist(playlistname){console.log("Create Playlist query initiated")};
+    async UpdateRights(ID, UserType) {
+        const response = await axios.post(
+            "http://localhost:3500/updateuserrights",
+            {
+                Username: ID,
+                UserType: UserType,
+            }
+        );
 
-    AddToPlaylist(playlistid, songid){console.log("Add a song to respective playlist")};
-
-    RegisterUser(username, password){console.log("Register the user")};
+        return response.data.success;
+    }
 }

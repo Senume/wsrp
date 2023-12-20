@@ -1,4 +1,4 @@
-import hashIt from "hash-it";               // Library to handle Hash functionalities
+import hashIt from "hash-it"; // Library to handle Hash functionalities
 import axios from "axios";
 
 /**
@@ -7,7 +7,6 @@ import axios from "axios";
  * @param {number} UserId User to which this playlist belongs.
  */
 export default class Playlist {
-
     constructor(playlistName = null, userId = null) {
         this.Name = playlistName;
         this.UserId = userId;
@@ -20,9 +19,9 @@ export default class Playlist {
      * @returns {number} Returns the ID of the playlist
      */
     GenerateHashID() {
-        const TempID =  hashIt((this.Name + this.UserId).toUpperCase());   // Hashing Song details based on the Song Details
-        this.ID = TempID;                                                                               // Updating the Unique ID.
-        return this.ID;                                                                                 // Logging purpose.
+        const TempID = hashIt((this.Name + this.UserId).toUpperCase()); // Hashing Song details based on the Song Details
+        this.ID = TempID; // Updating the Unique ID.
+        return this.ID; // Logging purpose.
     }
 
     /**
@@ -43,10 +42,10 @@ export default class Playlist {
         const Index = this.SongList.findIndex((element) => element === SongID);
         if (Index !== -1) {
             this.SongList.splice(Index, 1);
-            return 1
+            return 1;
         } else {
-            throw new Error('Song not in Playlist');
-        }  
+            throw new Error("Song not in Playlist");
+        }
     }
 
     /**
@@ -55,55 +54,86 @@ export default class Playlist {
      */
     GetSongList() {
         return {
-                    ID: this.ID,
-                    Name: this.Name,
-                    UserId: this.UserId,
-                    SongList: this.SongList
-                }
+            ID: this.ID,
+            Name: this.Name,
+            UserId: this.UserId,
+            SongList: this.SongList,
+        };
     }
 
     async GetPlaylistDetails(list) {
-        console.log('Inside Plalist class',list)
+        console.log("Inside Plalist class", list);
         try {
-            const response = await axios.post('http://localhost:3500/retrieve/playlist', {
-                listid: list
-            }, {
-                headers: {
-                    "Content-Type": 'application/json',
-                }})
+            const response = await axios.post(
+                "http://localhost:3500/retrieve/playlist",
+                {
+                    listid: list,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             return response.data;
         } catch (error) {
-            console.log('"/retrieve/playlist" endpoint Playlist class error: ' + error.message);
+            console.log(
+                '"/retrieve/playlist" endpoint Playlist class error: ' +
+                    error.message
+            );
             return 0;
         }
     }
 
     async UpdatePlaylistDatabase(Data) {
         try {
-            const response = await axios.post('http://localhost:3500/addplaylist', {
-                playlist: Data
-            }, {
-                headers: {
-                    "Content-Type": 'application/json',
-                }})
+            const response = await axios.post(
+                "http://localhost:3500/addplaylist",
+                {
+                    playlist: Data,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             return response.data;
         } catch (error) {
-            console.log('Playlist class error: ' + error.message);
+            console.log("Playlist class error: " + error.message);
         }
-
     }
 
-    async GetPlaylistbyID(id) { 
+    async GetPlaylistbyID(id) {
         try {
-            let url = 'http://localhost:3500/playlistdetails/' + id;
+            let url = "http://localhost:3500/playlistdetails/" + id;
             console.log("Resource locator for the playlist: ", url);
             const response = await axios.get(url);
-            console.log(response);
+            // console.log(response);
             return response.data;
         } catch (error) {
-            console.log('"playlistdetails" endpoint Playlist class error: ' + error.message);
+            console.log(
+                '"playlistdetails" endpoint Playlist class error: ' +
+                    error.message
+            );
+            return 0;
+        }
+    }
+
+    async GetPlaylistbyUser(id) {
+        try {
+            let url = "http://localhost:3500/playlistdetails/User/" + id;
+            console.log("Resource locator for the playlist: ", url);
+            const response = await axios.get(url);
+            // console.log(response);
+            return response.data;
+        } catch (error) {
+            console.log(
+                '"playlistdetails" endpoint Playlist class error: ' +
+                    error.message
+            );
             return 0;
         }
     }

@@ -17,27 +17,31 @@ const SignUpPage = () => {
   const [gender, setGender] = useState("male"); // Default to 'male'
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSignUp = async () => {
-    try {
-      // Replace 'http://localhost:5000' with your actual backend API URL
-      const response = await axios.post("http://localhost:3500/signup", {
-        UserName,
-        email,
-        password,
-        age,
-        gender,
-        userType,
-      });
+const handleSignUp = async () => {
+    if (password === confirmPassword) {
+      try {
+        // Replace 'http://localhost:5000' with your actual backend API URL
+        const response = await axios.post("http://localhost:3500/signup", {
+          UserName,
+          email,
+          password,
+          age,
+          gender,
+          userType,
+        });
 
-      console.log("Signup successful:", response.data);
+        console.log("Signup successful:", response.data);
 
-      nav('/login');
-      // Handle successful signup (e.g., redirect to login page)
-    } catch (error) {
-      console.error("Signup failed:", error.message);
-      // Handle signup failure (e.g., show error message)
-    }
-  };
+        nav("/login");
+        // Handle successful signup (e.g., redirect to login page)
+      } catch (error) {
+        console.error("Signup failed:", error.message);
+        // Handle signup failure (e.g., show error message)
+      }
+    } else {
+      alert("password and confirm password doesn't match");
+    }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

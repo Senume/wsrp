@@ -1,0 +1,22 @@
+.SongBox {
+    
+    margin: 2px;
+    padding: 5px;
+    
+    border: solid 1px;
+
+    display: flex;
+    justify-content: flex-start;
+
+    align-items: center;
+}
+
+.SongBox li{
+    padding-left: 15px;
+}
+
+.SongBox img {
+
+    border-radius: 4px;
+}
+
