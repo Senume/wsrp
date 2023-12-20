@@ -6,6 +6,7 @@ import axios from "axios";
 
 import image from './Logo_BG.png'
 import './Navbar.css';
+import User from "../../utils/UserClass";
 
 function Navbar() {
     
@@ -34,10 +35,11 @@ function Navbar() {
         }
     };
 
-    let userTypeSpecificContent;
+    let UserTypeSpecificContent;
+    console.log("Navbar log: ", user)
     switch (user.UserType) {
         case "global":
-            userTypeSpecificContent = (
+            UserTypeSpecificContent = (
                 <>
                     {/* Specific content for global user */}
                     <li>About</li>
@@ -48,7 +50,7 @@ function Navbar() {
             break;
 
         case "common":
-            userTypeSpecificContent = (
+            UserTypeSpecificContent = (
                 <>
                     <li>About</li>
                     <li><NavLink to='/'>Recognise</NavLink></li>
@@ -61,7 +63,7 @@ function Navbar() {
             break;
 
         case "playlist-maker":
-            userTypeSpecificContent = (
+            UserTypeSpecificContent = (
                 <>
                     {/* Specific content for playlist-maker user */}
                     <li>About</li>
@@ -72,7 +74,7 @@ function Navbar() {
             );
             break;
         case "admin":
-            userTypeSpecificContent = (
+            UserTypeSpecificContent = (
                 <>
                     {/* Specific content for admin user */}
                     <li><NavLink to='/dash'>Dashboard</NavLink></li>
@@ -85,7 +87,7 @@ function Navbar() {
             );
             break;
         default:
-            userTypeSpecificContent = null;
+            UserTypeSpecificContent = null;
     }
 
     return (
@@ -97,7 +99,7 @@ function Navbar() {
                 {/* Common elements for all user types */}
 
                 {/* User type specific content */}
-                {userTypeSpecificContent}
+                {UserTypeSpecificContent}
             </div>
         </nav>
     );

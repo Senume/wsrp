@@ -10,9 +10,9 @@ const UserManagerBox = (props) => {
     <div className="UserManagerBox">
         <div className="title">{props.value.UserName}</div>
         <div className="buttons">
-            <button onClick={() => props.handleadmin(props.value.UserName)} disabled={props.value.userType === "admin"}><RiAdminLine /></button>
-            <button onClick={() => props.handleplaylist(props.value.UserName)} disabled={props.value.userType === "playlist-maker"} ><IoIosMusicalNote /></button>
-            <button onClick={() => props.handleuser(props.value.UserName)} disabled={props.value.userType === "common"}><CiUser /></button>
+            <button onClick={() => props.handleadmin(props.value.UserName)} disabled={props.value.UserType === "admin"}><RiAdminLine /></button>
+            <button onClick={() => props.handleplaylist(props.value.UserName)} disabled={props.value.UserType === "playlist-maker"} ><IoIosMusicalNote /></button>
+            <button onClick={() => props.handleuser(props.value.UserName)} disabled={props.value.UserType === "common"}><CiUser /></button>
         </div>
     </div>);
 }

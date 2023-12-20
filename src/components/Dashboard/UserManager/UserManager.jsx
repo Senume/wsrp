@@ -31,11 +31,11 @@ const UserManager = () => {
 
     console.log("Users in the Database: ", Users);
 
-   const updateUserRights = async (ID, userType) => {
+   const updateUserRights = async (ID, UserType) => {
         const userObject = new User();
         const MediaObject = new Media();
         for (let i = 0; i < 5; i++) {
-            await userObject.UpdateRights(ID, userType);
+            await userObject.UpdateRights(ID, UserType);
             const Data = await MediaObject.GetAllUser();
             const OtherUsers = Data.filter(item => item.UserName !== currentuser)
             setUsers(OtherUsers)
